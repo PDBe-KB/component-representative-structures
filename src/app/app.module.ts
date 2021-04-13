@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { MolstarDialogComponent } from './molstar-dialog/molstar-dialog.component';
 import { SuperposeComponent } from './superpose/superpose.component';
 import { RepresentativeStructuresComponent } from './representative-structures/representative-structures.component';
+import {MatDialogModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RepresentativeStructuresComponent } from './representative-structures/r
     RepresentativeStructuresComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

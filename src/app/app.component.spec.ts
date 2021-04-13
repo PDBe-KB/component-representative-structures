@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {RepresentativeStructuresComponent} from "./representative-structures/representative-structures.component";
+import {MatDialogModule} from "@angular/material";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        RepresentativeStructuresComponent
       ],
+      imports: [
+        MatDialogModule
+      ]
     }).compileComponents();
   });
 
@@ -16,16 +22,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pdbe-kb-representative-structures'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('pdbe-kb-representative-structures');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('pdbe-kb-representative-structures app is running!');
-  });
 });
