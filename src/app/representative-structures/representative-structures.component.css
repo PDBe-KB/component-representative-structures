@@ -1,0 +1,114 @@
+.padding-small {
+  padding: 0.5em 1em;
+  font-size: 0.7rem;
+}
+
+.bottom-text {
+  font-size: 1.25em;
+  color: #0a0a0a;
+  font-weight: bold;
+  padding-top: 5px;
+  margin-bottom: 0;
+}
+
+#representative-structure {
+  margin: 0 5px 15px 5px;
+  max-width: 500px;
+}
+
+p {
+  text-align: center;
+  padding-top: 25px;
+}
+
+.columns {
+  padding: 0px;
+}
+
+#representative-img {
+  height: auto;
+}
+
+.carousel-arrow {
+  padding-top: 35%;
+  padding-bottom: 35%;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+#uniprot-sequence-div {
+  width: 100%;
+  background-color: lightgrey;
+  height: 5px;
+  position: absolute;
+  margin-top: 10px;
+}
+
+#coverage-track-div {
+  height: 30px;
+  position: relative;
+  padding-right: 10px;
+}
+
+.segment {
+  height: 15px;
+  font-size: xx-small;
+  position: absolute;
+  margin-top: 5px;
+}
+
+.segment:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#item-labels {
+  text-align: center;
+  font-size: small;
+}
+
+a, a:focus, a:active, a:hover {
+  border-bottom-style: none;
+  box-shadow: none !important;
+}
+
+#sub-label {
+  font-size: smaller;
+}
+
+.label-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.label-tooltip .label-tooltip-text, .label-tooltip-alt .label-tooltip-text {
+  visibility: hidden;
+  width: 300px;
+  background-color: white;
+  color: #0a0a0a;
+  text-align: center;
+  border: solid 2px black;
+  border-radius: 6px;
+  padding: 5px 3px 5px 3px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.label-tooltip .label-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.label-tooltip:hover .label-tooltip-text, .label-tooltip-alt:hover .label-tooltip-text {
+  visibility: visible;
+}

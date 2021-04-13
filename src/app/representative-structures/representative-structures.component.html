@@ -1,0 +1,85 @@
+<div id="representative-structure" *ngIf="data && data.length && data.gallery_items.length > 0">
+  <p class="top-text">
+    <strong>{{data.main_label}}</strong>
+    <br>
+    <span id="sub-label">
+      <div class="label-tooltip">
+        <strong>{{data.sub_label}}</strong>&nbsp;
+        <i class="icon icon-generic" data-icon="i"></i>
+        <span class="label-tooltip-text">
+          This viewer shows non-overlapping chains from PDB entries with the highest number of
+          observed residues for various regions of the UniProt protein sequence.
+          <br><br>
+          Use the arrows or click on the blue segments at the bottom to navigate
+          between representative chains from different PDB entries for different regions of the sequence.
+          <br><br>
+          Observed regions are darker shades, while unobserved regions are slightly transparent.
+        </span>
+      </div>
+    </span>
+  </p>
+  <div class="row">
+    <div *ngIf="data.gallery_items.length > 1" class="small-1 columns carousel-arrow" (click)="previousItem()"
+         onclick="gtag('event', 'click', {'event_category': 'bestStructure', 'event_label': 'previous', 'value': 'clicked'})">
+      <a>
+        <i class="icon icon-functional" data-icon="<"></i>
+      </a>
+    </div>
+    <div class="small-10 columns" style="text-align: center">
+      <span style="cursor:pointer;display: inline-block;" (click)="openMolstarDialog(data.start_index)"
+            onclick="gtag('event', 'click', {'event_category': 'bestStructure', 'event_label': 'molstar', 'value': 'opened'})">
+        <div style="position: relative; top: 10px; text-align: right">
+          <i class="icon icon-functional" data-icon="4"></i> Click to view in 3D
+        </div>
+        <img id="representative-img" alt="{{data.gallery_items[data.start_index].image_alt}}"
+             src="{{data.gallery_items[data.start_index].image_url}}">
+      </span>
+    </div>
+    <div *ngIf="data.gallery_items.length > 1" class="small-1 columns carousel-arrow" (click)="nextItem()"
+         onclick="gtag('event', 'click', {'event_category': 'bestStructure', 'event_label': 'next', 'value': 'clicked'})">
+      <a>
+        <i class="icon icon-functional" data-icon=">"></i>
+      </a>
+    </div>
+  </div>
+  <div style="clear: both">
+    <div id="coverage-track-div">
+      <div id="uniprot-sequence-div"></div>
+      <div *ngFor="let item of data.gallery_items; let i = index">
+        <div [ngStyle]="getStyle(i)" class="segment" (click)="setCurrentItem(i)">
+          <span *ngIf="data.gallery_items.length > 1" [ngStyle]="getMarkerStyle(i)"><i class="icon icon-generic"
+                                                                                       data-icon="["></i></span>
+        </div>
+        <div *ngFor="let subItem of item.observed; let j = index" class="label-tooltip-alt">
+          <div [ngStyle]="getObservedStyle(i, j)" class="segment" (click)="setCurrentItem(i)">
+          </div>
+          <span class="label-tooltip-text">PDB {{data.gallery_items[i].main_id}} chain {{data.gallery_items[i].sub_id}} (observed residues)</span>
+        </div>
+      </div>
+    </div>
+    <div id="item-labels">
+      <p class="bottom-text">
+        <a
+          href="http://www.ebi.ac.uk/pdbe/entry/pdb/{{data.gallery_items[data.start_index].main_id}}/protein/{{data.gallery_items[data.start_index].opt_id}}"
+          target="_blank">
+          {{data.gallery_items[data.start_index].label}} <i class="icon icon-generic" data-icon="x"></i>
+        </a>
+      </p>
+      <p class="bottom-text">
+        UniProt residues {{data.gallery_items[data.start_index].start}} - {{data.gallery_items[data.start_index].end}}
+      </p>
+      <p class="bottom-text" style="margin-bottom: 10px">{{showCoverage(data.gallery_items[data.start_index])}}</p>
+      <div class="row">
+        <div *ngIf="data.gallery_items[data.start_index].segment_id" class="small-12 medium-6 medium-offset-3">
+          <app-superpose [superposeModalData]="getSuperposeData(data.gallery_items[data.start_index])"
+                         label="View structure clusters for segment {{data.gallery_items[data.start_index].segment_id}}"
+                         tooltip="View all the structural clusters of this segment"></app-superpose>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
